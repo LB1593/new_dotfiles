@@ -1,0 +1,203 @@
+#### guida installazione e config i3 + gnome-polybar-rofi + 
+personalizz Temi
+
+
+########################################## START CONFIG
+
+#### update e upgrade sistema
+
+sudp apt update
+sudo apt upgrade
+
+##################################################### START I3
+
+### install i3
+
+sudo apt install i3 # esci dalla home e rientra su i3
+
+#### modifica subito il config di i3 , con quello su Github
+ma commenta le seguenti righe 
+
+#for_window [class="^.*"] border pixel 0
+
+#gaps inner 30
+#gaps outer 20
+
+############################################ STOP I3
+
+####installa git
+
+sudo apt install git
+
+### accedi alla mia git e clona la repo dotfiles
+
+mkdir Github
+
+git clone https://github.com/LB1593/dotfiles.git
+
+
+#################################################### START GNOME
+
+### dopo aver modificato il BASH , install gnome
+
+i3-config
+
+exec --no-startup-id /usr/lib/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentic>
+exec --no-startup-id gnome-flashback
+
+git clone  https://aur.archlinux.org/i3-gnome.git 
+
+cd i3-gnome
+
+sudo make install
+
+######################################################## STOP GNOME
+
+###### esci e entra con i3+gnome, install rofi 
+
+
+#######################################################  START ROFI
+
+sudo add-apt-repository ppa:jasonpleau/rofi
+sudo apt install rofi
+cd
+
+cd ~/.config
+mkdir rofi 
+touch config
+
+######################################################### STOP ROFI
+
+#### inserisci il config di rofi su Github , install polybar
+
+
+####################################################### START POLY
+
+sudo apt-get install \
+  cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
+  libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev \
+  libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen \
+  xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev \
+  libiw-dev libcurl4-openssl-dev libpulse-dev \
+  libxcb-composite0-dev xcb libxcb-ewmh2
+git clone https://github.com/jaagr/polybar.git
+
+#### installarla in caso di bisogno( o cercare libr. extra da aggiungere)
+
+sudo apt-get install libjsoncpp-dev 
+
+cd polybar
+
+./build.sh
+
+##### rispondere sempre yes , anche a sudo make install
+
+##### configura polybar
+
+cd $HOME
+
+cp ~/Github/polybar/* ~/.config/polybar
+
+poly
+
+cp -r fonts/* ~/.local/share/fonts
+
+fc-cache -v
+
+./launch.sh 
+#################################################### STOP POLY
+
+################################################## START I3-GAPS
+
+#### install i3-gaps
+
+sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev xutils-dev libxcb-shape0-dev autoconf
+
+sudo apt install autoconf libtool
+
+sudo apt install automake libtool
+
+
+cd /tmp
+git clone https://github.com/Airblader/xcb-util-xrm
+cd xcb-util-xrm
+git submodule update --init
+./autogen.sh --prefix=/usr
+make
+sudo make install
+
+### cambia il nome della directory se vuoi 
+mkdir ~/i3-gaps_shiz    
+cd ~/i3-gaps_shiz 
+git clone https://www.github.com/Airblader/i3 i3-gaps
+cd i3-gaps
+autoreconf --force --install
+mkdir build
+cd build
+../configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+
+############################################ STOP I3-GAPS
+
+
+##### installa tweak da terminale ( personalizzazioni) e gitcracken ( da software)
+
+
+sudo apt install gnome-tweaks
+
+
+#### per installazione temi prsonalizzati
+
+sudo apt install gnome-shell-extensions
+
+############################################### STOP CONFIG
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

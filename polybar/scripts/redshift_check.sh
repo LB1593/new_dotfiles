@@ -1,0 +1,17 @@
+# NAME         :  redshift_check
+# AUTHOR       :  Adrien CARBONARO
+# UPDATE       :  20/01/2019
+# DESCRIPTION  :  Check if redshift is running and print an icon
+#                 Used in polybar
+# PARAMETERS   :  none
+#-----------------------------------------------------------
+
+pid_redshift=$(pgrep -x "redshift" | tr -dc "[:digit:]")
+
+if [ $pid_redshift ]
+then
+    echo ""
+else
+    echo ""
+fi
+
